@@ -6,5 +6,5 @@ export function SearchBlock() {
         <div className={styles.searchBlock}>
             SearchBlock
         </div>
-    )
+    );
 }

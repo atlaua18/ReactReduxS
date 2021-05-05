@@ -1,0 +1,78 @@
+.controls {
+    padding: 10px 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.karmaCounter > * + * {
+    padding: 0 0 0 4px;
+}
+
+.karmaValue {
+    color: var(--greyC4);
+}
+
+.commentsButton {
+    display: flex;
+    align-items: normal;
+}
+
+.commentsButton * {
+    color: var(--greyC4);
+}
+
+.commentsNumber {
+    padding: 0 0 0 6px;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.actions {
+    width: 55px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.shareButton {
+    width: 20px;
+    height: 20px;
+}
+
+.saveButton {
+    width: 20px;
+    height: 20px;
+}
+
+@media all and (min-width: 1024px) {
+    .controls {
+        order: 3;
+        flex: 0 0;
+        margin: 0 0 0 24px;
+        padding: 0;
+    }
+
+    .karmaCounter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column nowrap;
+    }
+    .karmaCounter > * + * {
+        padding: 7px 0 0;
+    }
+
+    .karmaValue {
+        font-size: 14px;
+        line-height: 16px;
+        color: var(--black);
+    }
+
+    .commentsButton {
+        display: none;
+    }
+
+    .actions {
+        display: none;
+    }
+}

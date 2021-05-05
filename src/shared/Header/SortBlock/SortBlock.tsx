@@ -6,5 +6,5 @@ export function SortBlock() {
         <div className={styles.sortBlock}>
             sorting dropdown
         </div>
-    )
+    );
 }
