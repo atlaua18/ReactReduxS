@@ -76,3 +76,13 @@
         display: none;
     }
 }
+
+@media all and (min-width: 1540px) {
+    .karmaCounter > .up:hover > svg > path {
+        fill: var(--green);
+    }
+
+    .karmaCounter > .down:hover > svg > path {
+        fill: var(--orange);
+    }
+}

@@ -87,4 +87,13 @@
     .textContent {
         flex-basis: 672px;
     }
+    
+    .postLink:hover {
+        color: var(--orange);
+        cursor: pointer;
+    }
+
+    .userLink:hover {
+        text-decoration: underline;
+    }
 }
