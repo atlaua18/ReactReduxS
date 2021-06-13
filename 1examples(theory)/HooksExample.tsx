@@ -31,13 +31,13 @@ export function MyHooks({title}: { title: string}) {
     //без второго аргумента [], срабатывает на каждое изменение
     React.useEffect( () => {
         //аналог того, что будет происходить в useEffect
-        console.log("componentDidMounte"); 
+        console.log("componentDidMount"); 
         console.log("componentWillUpdate"); 
     });
 
     //с пустым аргументом - срабатывает 1 раз
     React.useEffect( () => {
-        console.log("componentDidMounte"); 
+        console.log("componentDidMount"); 
         //то еть тут без аналога componentWillUpdate
 
         //эта функция в return может добавляться в любом useEffect
