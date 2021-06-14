@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./menu.css";
 
-export class Menu extends React.Component {
-    public render() {
+export function Menu() {
+    
         return (
             <div className={styles.menu}>
                 <button className={styles.menuButton}>
@@ -21,4 +21,3 @@ export class Menu extends React.Component {
             </div>
         );
     }
-}

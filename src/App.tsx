@@ -41,10 +41,10 @@ function AppComponent() {
             <Header />
             <Content>
                 <CardsList />
-                <br />
+                {/* <br />
                 <Dropdown button={<button>Test</button>}>
                 <CardsList />
-                </Dropdown>
+                </Dropdown> */}
             </Content>
         </Layout>
     );
