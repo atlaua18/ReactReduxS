@@ -1,8 +1,9 @@
 import React from "react";
 import { Dropdown } from "../../../Dropdown/Dropdown";
 import { MenuIcon } from "../../../icons/MenuIcon";
-import { EColors } from "../../../Text/Text";
+import { EColors, Text } from "../../../Text/Text";
 import styles from "./menu.css";
+import { MenuItemsList } from "./MenuItemList/MenuItemsList";
 
 export function Menu() {
     return (
@@ -15,7 +16,7 @@ export function Menu() {
                 }
             >
                 <div className={styles.dropdown}>
-                MenuItems
+                <MenuItemsList postId="1234"/>
                 <button className={styles.closeBtn}>
                 <Text mobileSize={12} size={14} color={EColors.grey66}>
                     Закрыть
