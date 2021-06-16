@@ -12,12 +12,12 @@ export function Card() {
         <li className={styles.card}>
             <TextContent />
             <Preview />
-            {/* <Menu /> */}
-            <div className={styles.dropdownContainer}>
+            <Menu />
+            {/* <div className={styles.dropdownContainer}>
             <Dropdown button={<Menu />}>
                 <CardDropdown />
             </Dropdown>
-            </div>
+            </div> */}
             {/* <Menu>
                 <Dropdown button={<button></button>}>
                 <CardDropdown />

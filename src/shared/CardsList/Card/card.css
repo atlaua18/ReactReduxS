@@ -10,11 +10,9 @@
     flex: 1 1 100%;
 }
 
-.dropdownContainer {
+/* .dropdownContainer {
     flex: 0 1 auto;
-    /* align-self: center; */
-    /* order: 3; */
-}
+} */
 
 @media all and (min-width: 1024px) {
     .card {
@@ -23,12 +21,12 @@
         flex-flow: row nowrap;
     }
 
-    .dropdownContainer {
+    /* .dropdownContainer {
         flex: 0 1 auto;
         align-self: center;
         order: 3;
         position: relative;
-    }
+    } */
 }
 
 @media all and (min-width: 1540px) {
