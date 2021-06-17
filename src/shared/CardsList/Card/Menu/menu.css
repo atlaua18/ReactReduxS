@@ -49,4 +49,9 @@
         align-self: center;
         transform: unset;
     }
+
+    .dropdown {
+        margin-top: 7px;
+        transform: translateX(40%);
+    }
 }

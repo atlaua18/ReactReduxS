@@ -18,3 +18,9 @@
     width: 100%;
     background-color: var(--greyEC);
 }
+
+@media all and (max-width: 1024px) {
+    .hide {
+        display: none;
+    }
+}

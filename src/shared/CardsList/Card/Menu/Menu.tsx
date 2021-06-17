@@ -16,12 +16,12 @@ export function Menu() {
                 }
             >
                 <div className={styles.dropdown}>
-                <MenuItemsList postId="1234"/>
-                <button className={styles.closeBtn}>
-                <Text mobileSize={12} size={14} color={EColors.grey66}>
-                    Закрыть
-                </Text>
-                </button>
+                    <MenuItemsList postId="1234" />
+                    <button className={styles.closeBtn}>
+                        <Text mobileSize={12} size={14} color={EColors.grey66}>
+                            Закрыть
+                        </Text>
+                    </button>
                 </div>
             </Dropdown>
         </div>
