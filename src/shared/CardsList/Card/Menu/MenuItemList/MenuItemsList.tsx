@@ -6,6 +6,7 @@ import { WarningIcon } from "../../../../icons/WarningIcon";
 import { CommentsIcon } from "../../../../icons/CommentsIcon";
 import { ShareIcon } from "../../../../icons/ShareIcon";
 import { SaveIcon } from "../../../../icons/SaveIcon";
+import { EIcons, Icon } from "../../../../Icon/Icon";
 
 interface IMenuItemsListProps {
     postId: string;
@@ -15,6 +16,7 @@ export function MenuItemsList({ postId }: IMenuItemsListProps) {
     return(
         <ul className={styles.menuItemsList}>
             <li className={styles.menuItem + " " + styles.hide}>
+                {/* <Icon name={EIcons.comments}/> */}
                 <CommentsIcon />
                 <Text size={12} color={EColors.grey99}>Комментарии</Text>
             </li>
