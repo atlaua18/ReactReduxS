@@ -10,47 +10,49 @@ import {
     generateId,
     generateRandomString,
 } from "./utils/react/generateRandomIndex";
-import { GenericList } from "./shared/GenericList/GenericList";
-import { merge } from "./utils/js/merge";
-import { Dropdown } from "./shared/Dropdown/Dropdown";
+import { useToken } from "./hooks/useToken";
+import { tokenContext } from "./shared/context/tokenContext";
+import { UserContextProvider } from "./shared/context/userContext";
 
 const LIST = [
     { value: "some" },
     { value: "other some" },
     { value: "some" },
-].map(generateId);
+].map((item) => ({ ...item, id: generateRandomString() }));
 //( (item) => ({ ...item, id: generateRandomString() })); - это 100% работает
 // assignId вместо ( (item) => ({ ...item, id: generateRandomString() })); assignId - генерирует один и тот же id для всех value
 // generateId вместо assignId / generateId генерирует один и тот же id для всех value (если generateId = <O extends object>(obj: O) => assignId(obj));
 // generateId ошибка из-за типов, если generateId = <O extends object>(obj: O) => assoc("id", generateRandomString());
 
 function AppComponent() {
-    const [list, setList] = React.useState(LIST);
-
-    // const handleItemClick = (id: string) => {
-    //     // console.log(id);
-    //     setList(list.filter((item) => item.id !== id));
-    // };
-
-    // const handleAdd = () => {
-    //     setList(list.concat(generateId({ value: generateRandomString() })));
-    // };
+    const [token] = useToken();
 
     return (
-        <Layout>
-            <Header />
-            <Content>
-                <CardsList />
-                {/* <br />
-                <Dropdown button={<button>Test</button>}>
-                <CardsList />
-                </Dropdown> */}
-            </Content>
-        </Layout>
+        <tokenContext.Provider value={token}>
+            <UserContextProvider>
+                <Layout>
+                    <Header />
+                    <Content>
+                        <CardsList />
+                    </Content>
+                </Layout>
+            </UserContextProvider>
+        </tokenContext.Provider>
     );
 }
 
 export const App = hot(() => <AppComponent />);
+
+// const [list, setList] = React.useState(LIST);
+
+// const handleItemClick = (id: string) => {
+//     // console.log(id);
+//     setList(list.filter((item) => item.id !== id));
+// };
+
+// const handleAdd = () => {
+//     setList(list.concat(generateId({ value: generateRandomString() })));
+// };
 
 {
     /* <button onClick={handleAdd}>Add element</button> */
