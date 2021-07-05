@@ -3,18 +3,22 @@ import { useState } from "react";
 import { Post } from "../../../../Post/Post";
 import styles from "./title.css";
 
-export function Title() {
+interface ITitleProps {
+    title?: string;
+    postText?: string;
+}
+
+export function Title({title, postText}: ITitleProps) {
     const [isModalOpened, setIsModalOpened] = useState(false);
     
     return (
         <h2 className={styles.title}>
             <a href="#post-url" className={styles.postLink} onClick={() => { setIsModalOpened(true) }}>
-                Следует отметить, что новая модель организационной деятельность
-                Следует отметить, что новая модель организационной деятельность
+                {title || "Заголовок отсутствует"}
             </a>
 
             {isModalOpened && (
-                <Post
+                <Post title={title} postText={postText}
                 onClose={() => { setIsModalOpened(false) }} 
                 />
             )}

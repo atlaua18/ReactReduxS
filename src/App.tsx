@@ -13,6 +13,7 @@ import {
 import { useToken } from "./hooks/useToken";
 import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
+import { PostsContextProvider } from "./shared/context/postsContext";
 
 const LIST = [
     { value: "some" },
@@ -33,7 +34,9 @@ function AppComponent() {
                 <Layout>
                     <Header />
                     <Content>
-                        <CardsList />
+                        <PostsContextProvider>
+                            <CardsList />
+                        </PostsContextProvider>
                     </Content>
                 </Layout>
             </UserContextProvider>
