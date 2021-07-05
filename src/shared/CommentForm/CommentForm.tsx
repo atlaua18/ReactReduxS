@@ -1,13 +1,16 @@
 import React, { ChangeEvent, FormEvent, useRef } from "react";
+import { useContext } from "react";
 import { useState } from "react";
+import { commentContext } from "../context/commentContex";
 import styles from "./commentForm.css"
 
 export function CommentForm() {
     // const ref = useRef<HTMLTextAreaElement>(null); // этто было для неуправляемой компоненты
-    const [value, setValue] = useState('');
+    // const [value, setValue] = useState('');
+    const {value, onChange } = useContext(commentContext)
 
     function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-        setValue(event.target.value)
+        onChange(event.target.value);
     }
     
     function handleSubmit(event: FormEvent) {

@@ -14,6 +14,7 @@ export function CardsList() {
     })
     return (
         <ul className={styles.cardsList}>
+            <Card />
             {cards}
         </ul>
     );
