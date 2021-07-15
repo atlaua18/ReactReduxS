@@ -21,9 +21,11 @@
 }
 
 .dropdown {
-    position: absolute;
-    right: 0;
-    top: 10px;
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    /* top: 10px; */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: 3px;
     background-color: var(--white);

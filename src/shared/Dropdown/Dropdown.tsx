@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./dropdown.css"
 
 interface IDropdownProps {

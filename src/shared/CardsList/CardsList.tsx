@@ -18,6 +18,4 @@ export function CardsList() {
             {cards}
         </ul>
     );
-
-    
 }
