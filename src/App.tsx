@@ -5,16 +5,18 @@ import { Layout } from "./shared/Layout/Layout";
 import { Header } from "./shared/Header/Header";
 import { Content } from "./shared/Content/Content";
 import { CardsList } from "./shared/CardsList/CardsList";
-import {
-    assignId,
-    generateId,
-    generateRandomString,
-} from "./utils/react/generateRandomIndex";
+import { generateRandomString } from "./utils/react/generateRandomIndex";
 import { useToken } from "./hooks/useToken";
 import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
-import { commentContext } from "./shared/context/commentContex";
+import { commentContext } from "./shared/context/commentContext";
+
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+
+const store = createStore(() => {}, composeWithDevTools());
 
 const LIST = [
     { value: "some" },
@@ -34,6 +36,7 @@ function AppComponent() {
     const CommentProvider = commentContext.Provider;
 
     return (
+        <Provider store={store}>
         <CommentProvider
             value={{ value: commentValue, onChange: setCommentValue }}
         >
@@ -50,6 +53,7 @@ function AppComponent() {
                 </UserContextProvider>
             </tokenContext.Provider>
         </CommentProvider>
+        </Provider>
     );
 }
 

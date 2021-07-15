@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useRef } from "react";
 import { useContext } from "react";
 import { useState } from "react";
-import { commentContext } from "../context/commentContex";
+import { commentContext } from "../context/commentContext";
 import styles from "./commentForm.css"
 
 export function CommentForm() {
