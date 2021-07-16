@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, setToken } from "../store";
+import { RootState, setToken } from "../store/reducer";
 
 export function useToken() {
 
@@ -21,7 +21,3 @@ export function useToken() {
 }
 
 //  для извлечения токена
-
-// const token = useSelector<RootState, string>(state => state.token);
-    // const dispatch = useDispatch();
-    // dispatch(useToken());

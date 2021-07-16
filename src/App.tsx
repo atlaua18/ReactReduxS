@@ -5,42 +5,24 @@ import { Layout } from "./shared/Layout/Layout";
 import { Header } from "./shared/Header/Header";
 import { Content } from "./shared/Content/Content";
 import { CardsList } from "./shared/CardsList/CardsList";
-import { generateRandomString } from "./utils/react/generateRandomIndex";
-import { useToken } from "./hooks/useToken";
-// import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
 
 import { createStore } from "redux";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { rootReducer, RootState } from "./store";
+import { rootReducer } from "./store/reducer";
+import { applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer, composeWithDevTools());
-
-const LIST = [
-    { value: "some" },
-    { value: "other some" },
-    { value: "some" },
-].map((item) => ({ ...item, id: generateRandomString() }));
-//( (item) => ({ ...item, id: generateRandomString() })); - это 100% работает
-// assignId вместо ( (item) => ({ ...item, id: generateRandomString() })); assignId - генерирует один и тот же id для всех value
-// generateId вместо assignId / generateId генерирует один и тот же id для всех value (если generateId = <O extends object>(obj: O) => assignId(obj));
-// generateId ошибка из-за типов, если generateId = <O extends object>(obj: O) => assoc("id", generateRandomString());
+const store = createStore(rootReducer, composeWithDevTools(
+    applyMiddleware(thunk)
+));
 
 function AppComponent() {
-    // const [commentValue, setCommentValue] = useState("");
-
-    // const [token] = useToken();
-
-    // const CommentProvider = commentContext.Provider;
-
+    
     return (
         <Provider store={store}>
-        {/* <CommentProvider
-            value={{ value: commentValue, onChange: setCommentValue }}
-        > */}
-            {/* <tokenContext.Provider value={token}> */}
                 <UserContextProvider>
                     <Layout>
                         <Header />
@@ -51,13 +33,62 @@ function AppComponent() {
                         </Content>
                     </Layout>
                 </UserContextProvider>
-            {/* </tokenContext.Provider> */}
-        {/* </CommentProvider> */}
         </Provider>
     );
 }
 
 export const App = hot(() => <AppComponent />);
+
+//#region  для демонстрации работы middleware
+// const ping: Middleware = (store) => (next) => (action) => {
+//     console.log('ping');
+//     next(action);
+// }
+// const pong: Middleware = (store) => (next) => (action) => {
+//     console.log('pong');
+//     next(action);
+// }
+//#endregion
+
+//#region было до redux/rootReducer
+// const [commentValue, setCommentValue] = useState("");
+
+    // const [token] = useToken();
+
+    // const CommentProvider = commentContext.Provider;
+
+// return (
+//     <Provider store={store}>
+//     {/* <CommentProvider
+//         value={{ value: commentValue, onChange: setCommentValue }}
+//     > */}
+//         {/* <tokenContext.Provider value={token}> */}
+//             <UserContextProvider>
+//                 <Layout>
+//                     <Header />
+//                     <Content>
+//                         <PostsContextProvider>
+//                             <CardsList />
+//                         </PostsContextProvider>
+//                     </Content>
+//                 </Layout>
+//             </UserContextProvider>
+//         {/* </tokenContext.Provider> */}
+//     {/* </CommentProvider> */}
+//     </Provider>
+// );
+// }
+//#endregion
+
+// const LIST = [
+//     { value: "some" },
+//     { value: "other some" },
+//     { value: "some" },
+// ].map((item) => ({ ...item, id: generateRandomString() }));
+//( (item) => ({ ...item, id: generateRandomString() })); - это 100% работает
+// assignId вместо ( (item) => ({ ...item, id: generateRandomString() })); assignId - генерирует один и тот же id для всех value
+// generateId вместо assignId / generateId генерирует один и тот же id для всех value (если generateId = <O extends object>(obj: O) => assignId(obj));
+// generateId ошибка из-за типов, если generateId = <O extends object>(obj: O) => assoc("id", generateRandomString());
 
 // const [list, setList] = React.useState(LIST);
 
@@ -86,6 +117,18 @@ export const App = hot(() => <AppComponent />);
                         })
                     )}
                 /> */
+}
+
+function useSelector<T, U>(arg0: (state: any) => any) {
+    throw new Error("Function not implemented.");
+}
+
+function useDispatch() {
+    throw new Error("Function not implemented.");
+}
+
+function setToken(__token__: string): any {
+    throw new Error("Function not implemented.");
 }
 // <GenericList list={list.map(
 //         merge({
