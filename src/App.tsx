@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./main.global.css";
 import { hot } from "react-hot-loader/root";
 import { Layout } from "./shared/Layout/Layout";
@@ -10,13 +10,13 @@ import { useToken } from "./hooks/useToken";
 import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
-import { commentContext } from "./shared/context/commentContext";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { rootReducer } from "./store";
 
-const store = createStore(() => {}, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools());
 
 const LIST = [
     { value: "some" },
@@ -29,17 +29,17 @@ const LIST = [
 // generateId ошибка из-за типов, если generateId = <O extends object>(obj: O) => assoc("id", generateRandomString());
 
 function AppComponent() {
-    const [commentValue, setCommentValue] = useState("");
+    // const [commentValue, setCommentValue] = useState("");
 
     const [token] = useToken();
 
-    const CommentProvider = commentContext.Provider;
+    // const CommentProvider = commentContext.Provider;
 
     return (
         <Provider store={store}>
-        <CommentProvider
+        {/* <CommentProvider
             value={{ value: commentValue, onChange: setCommentValue }}
-        >
+        > */}
             <tokenContext.Provider value={token}>
                 <UserContextProvider>
                     <Layout>
@@ -52,7 +52,7 @@ function AppComponent() {
                     </Layout>
                 </UserContextProvider>
             </tokenContext.Provider>
-        </CommentProvider>
+        {/* </CommentProvider> */}
         </Provider>
     );
 }

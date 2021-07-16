@@ -1,26 +1,38 @@
-import React, { ChangeEvent, FormEvent, useRef } from "react";
-import { useContext } from "react";
-import { useState } from "react";
-import { commentContext } from "../context/commentContext";
+import React, { ChangeEvent, FormEvent } from "react";
 import styles from "./commentForm.css"
 
-export function CommentForm() {
-    // const ref = useRef<HTMLTextAreaElement>(null); // этто было для неуправляемой компоненты
-    // const [value, setValue] = useState('');
-    const {value, onChange } = useContext(commentContext)
-
-    function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-        onChange(event.target.value);
-    }
+type Props = {
+    value: string;
+    onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+    onSubmit: (event: FormEvent) => void;
+}
+export function CommentForm({ value, onChange, onSubmit }: Props) {
     
-    function handleSubmit(event: FormEvent) {
-        event.preventDefault();
-        console.log(value);
-    }
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <textarea className={styles.input} value={value} onChange={handleChange}/>
+        <form className={styles.form} onSubmit={onSubmit}>
+            <textarea className={styles.input} value={value} onChange={onChange}/>
             <button type="submit" className={styles.button}>Комментировать</button>
         </form>
     );
 }
+
+// до создания контейнера тут было это:
+// const ref = useRef<HTMLTextAreaElement>(null); // это было для неуправляемой компоненты
+    // const [value, setValue] = useState('');
+    // const { onChange } = useContext(commentContext)
+
+    // привязка к редаксу!!!
+    // const store = useStore<RootState>();
+    // const value = store.getState().commentText;
+    // const value = useSelector<RootState, string>(state => state.commentText); // вместо двух строчек выше
+    // const dispatch = useDispatch();
+
+    // function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    //     // onChange(event.target.value);
+    //     dispatch(updateComment(event.target.value));
+    // }
+    
+    // function handleSubmit(event: FormEvent) {
+    //     event.preventDefault();
+    //     console.log(value);
+    // }
