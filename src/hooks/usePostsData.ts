@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { tokenContext } from "../shared/context/tokenContext";
+// import { tokenContext } from "../shared/context/tokenContext";
+import { useToken } from "./useToken";
 
 // class PostData {
 //     public title: string;
@@ -39,9 +40,9 @@ interface IPostsData {
 }
 
 export function usePostsData() {
-    //: PostData[]
     const [data, setData] = useState<IPostsData[]>([]);
-    const token = useContext(tokenContext);
+    // const token = useContext(tokenContext);
+    const token = useToken();
     var array: IPostsData[] = []; //new Array<IPostsData>();
     useEffect(() => {
         if (token !== "") {

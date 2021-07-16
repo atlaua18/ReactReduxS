@@ -7,14 +7,14 @@ import { Content } from "./shared/Content/Content";
 import { CardsList } from "./shared/CardsList/CardsList";
 import { generateRandomString } from "./utils/react/generateRandomIndex";
 import { useToken } from "./hooks/useToken";
-import { tokenContext } from "./shared/context/tokenContext";
+// import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
 
 import { createStore } from "redux";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { rootReducer } from "./store";
+import { rootReducer, RootState } from "./store";
 
 const store = createStore(rootReducer, composeWithDevTools());
 
@@ -31,7 +31,7 @@ const LIST = [
 function AppComponent() {
     // const [commentValue, setCommentValue] = useState("");
 
-    const [token] = useToken();
+    // const [token] = useToken();
 
     // const CommentProvider = commentContext.Provider;
 
@@ -40,7 +40,7 @@ function AppComponent() {
         {/* <CommentProvider
             value={{ value: commentValue, onChange: setCommentValue }}
         > */}
-            <tokenContext.Provider value={token}>
+            {/* <tokenContext.Provider value={token}> */}
                 <UserContextProvider>
                     <Layout>
                         <Header />
@@ -51,7 +51,7 @@ function AppComponent() {
                         </Content>
                     </Layout>
                 </UserContextProvider>
-            </tokenContext.Provider>
+            {/* </tokenContext.Provider> */}
         {/* </CommentProvider> */}
         </Provider>
     );
