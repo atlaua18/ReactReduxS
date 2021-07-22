@@ -5,8 +5,8 @@ import { Layout } from "./shared/Layout/Layout";
 import { Header } from "./shared/Header/Header";
 import { Content } from "./shared/Content/Content";
 import { CardsList } from "./shared/CardsList/CardsList";
-import { UserContextProvider } from "./shared/context/userContext";
-import { PostsContextProvider } from "./shared/context/postsContext";
+// import { UserContextProvider } from "./shared/context/userContext";
+// import { PostsContextProvider } from "./shared/context/postsContext";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -23,16 +23,16 @@ function AppComponent() {
     
     return (
         <Provider store={store}>
-                <UserContextProvider>
+                {/* <UserContextProvider> */}
                     <Layout>
                         <Header />
                         <Content>
-                            <PostsContextProvider>
+                            {/* <PostsContextProvider> */}
                                 <CardsList />
-                            </PostsContextProvider>
+                            {/* </PostsContextProvider> */}
                         </Content>
                     </Layout>
-                </UserContextProvider>
+                {/* </UserContextProvider> */}
         </Provider>
     );
 }

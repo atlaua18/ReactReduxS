@@ -2,15 +2,17 @@ import express from "express";
 import ReactDOM from "react-dom/server";
 import { App } from "../App";
 import { indexTemplate } from "./indexTemplate";
+import { useDispatch } from "react-redux";
 // const express = require('express');
 import axios from "axios";
+import thunk from "redux-thunk";
 
 const app = express();
 
 app.use("/static", express.static("./dist/client"));
 
 app.get("/", (req, res) => {
-    res.send(indexTemplate(ReactDOM.renderToString(App()), ""));
+    res.send(indexTemplate(ReactDOM.renderToString(App())));
 });
 
 app.get("/auth", (req, res) => {
@@ -28,6 +30,9 @@ app.get("/auth", (req, res) => {
         );
     })
     .catch(console.log);
+    // res.send(
+    //             indexTemplate(ReactDOM.renderToString(App()), data['access_token'])
+    //         );
 });
 
 app.listen(3000, () => {

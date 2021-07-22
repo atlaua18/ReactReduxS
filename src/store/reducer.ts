@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { ActionCreator, AnyAction } from "redux";
+import { ActionCreator } from "redux";
 import {
     MeRequestAction,
     MeRequestErrorAction,
@@ -9,11 +9,21 @@ import {
     ME_REQUEST_SUCCESS,
 } from "./me/actions";
 import { meReducer, MeState } from "./me/reducer";
+import {
+    PostRequestAction,
+    PostRequestErrorAction,
+    PostRequestSuccessAction,
+    POST_REQUEST,
+    POST_REQUEST_ERROR,
+    POST_REQUEST_SUCCESS,
+} from "./posts/actionsPosts";
+import { postReducer, PostState } from "./posts/reducerPosts";
 
 export type RootState = {
     commentText: string;
     token: string;
     me: MeState;
+    post: PostState;
 };
 
 const initialState: RootState = {
@@ -22,7 +32,12 @@ const initialState: RootState = {
     me: {
         loading: false,
         error: "",
-        data: {}
+        data: {},
+    },
+    post: {
+        loading: false,
+        error: "",
+        data: [],
     },
 };
 
@@ -54,7 +69,10 @@ type MyAction =
     | SetTokenAction
     | MeRequestAction
     | MeRequestSuccessAction
-    | MeRequestErrorAction;
+    | MeRequestErrorAction
+    | PostRequestAction
+    | PostRequestSuccessAction
+    | PostRequestErrorAction;
 
 export const rootReducer: Reducer<RootState, MyAction> = (
     state = initialState,
@@ -78,6 +96,13 @@ export const rootReducer: Reducer<RootState, MyAction> = (
                 ...state,
                 me: meReducer(state.me, action),
             };
+        case POST_REQUEST:
+        case POST_REQUEST_SUCCESS:
+        case POST_REQUEST_ERROR:
+            return {
+                ...state,
+                post: postReducer(state.post, action),
+            }            
         default:
             return state;
     }

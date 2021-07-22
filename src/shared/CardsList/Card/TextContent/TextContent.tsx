@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { postsContext } from "../../../context/postsContext";
+// import { postsContext } from "../../../context/postsContext";
 import { IconAnon } from "../../../icons/IconAnon";
 import styles from "./textcontent.css";
 import { Title } from "./Title/Title";

@@ -11,6 +11,7 @@ export const meRequest: ActionCreator<MeRequestAction> = () => ({
     type: ME_REQUEST,
 });
 
+//request success
 export interface IUserData {
     name?: string;
     iconImg?: string;
@@ -27,6 +28,7 @@ export const meRequestSuccess: ActionCreator<MeRequestSuccessAction> = (
     data,
 });
 
+//request error
 export const ME_REQUEST_ERROR = "ME_REQUEST_ERROR";
 export type MeRequestErrorAction = {
     type: typeof ME_REQUEST_ERROR;
@@ -39,8 +41,7 @@ export const meRequestError: ActionCreator<MeRequestErrorAction> = (
     error,
 });
 
-export const meRequestAsync =
-    (): ThunkAction<void, RootState, unknown, Action<string>> =>
+export const meRequestAsync = (): ThunkAction<void, RootState, unknown, Action<string>> =>
     (dispatch, getState) => {
         dispatch(meRequest());
         if (getState().token !== "") {
