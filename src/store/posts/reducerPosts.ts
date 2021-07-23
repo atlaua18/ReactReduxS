@@ -1,5 +1,13 @@
 import { Reducer } from "react";
-import { IPostsData, PostRequestAction, PostRequestErrorAction, PostRequestSuccessAction, POST_REQUEST, POST_REQUEST_ERROR, POST_REQUEST_SUCCESS } from "./actionsPosts"
+import {
+    IPostsData,
+    PostRequestAction,
+    PostRequestErrorAction,
+    PostRequestSuccessAction,
+    POST_REQUEST,
+    POST_REQUEST_ERROR,
+    POST_REQUEST_SUCCESS,
+} from "./actionsPosts";
 
 export type PostState = {
     loading: boolean;
@@ -7,7 +15,10 @@ export type PostState = {
     data: IPostsData[];
 };
 
-type PostActions = PostRequestAction | PostRequestSuccessAction | PostRequestErrorAction;
+type PostActions =
+    | PostRequestAction
+    | PostRequestSuccessAction
+    | PostRequestErrorAction;
 
 export const postReducer: Reducer<PostState, PostActions> = (state, action) => {
     switch (action.type) {
@@ -22,13 +33,13 @@ export const postReducer: Reducer<PostState, PostActions> = (state, action) => {
                 error: action.error,
                 loading: false,
             };
-        case POST_REQUEST_SUCCESS: 
-        return {
-            ...state,
-            data: action.data,
-            loading: false,
-        }    ;
+        case POST_REQUEST_SUCCESS:
+            return {
+                ...state,
+                data: action.data,
+                loading: false,
+            };
         default:
             return state;
-}
+    }
 };

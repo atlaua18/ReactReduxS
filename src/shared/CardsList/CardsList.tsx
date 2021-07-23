@@ -21,6 +21,7 @@ export function CardsList() {
         <ul className={styles.cardsList}>
             <Card />
             {cards}
+            {loading && (<div style={{ textAlign: "center"}}>Загрузка...</div>)}
         </ul>
     );
 }

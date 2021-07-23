@@ -1,3 +1,4 @@
+import { Formik } from "formik";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./commentForm.css";
 
@@ -8,56 +9,86 @@ import styles from "./commentForm.css";
 // };
 
 export function CommentForm() {
-
-    const [value, setValue] = useState('');
-    const [touched, setTouched] = useState(false);
-    const [valueError, setValueError] = useState('');
-
-    function handleSubmit(event: FormEvent) {
+    function handleSubmitPrevDef(event: FormEvent) {
         event.preventDefault();
-        setTouched(true);
-        setValueError(validateValue());
-
-        const isFormValid = !validateValue();
-        if(!isFormValid) return;
-
-        alert('Форма отправлена');
     }
 
-    function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-        setValue(event.target.value);
-    }
-
-    function validateValue() {
-        if(value.length <= 3) return 'Введите больше 3-х символов';
-        return '';
-    }
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <textarea
-                className={styles.input}
-                value={value}
-                onChange={handleChange}
-                aria-invalid={valueError ? 'true' : undefined}
-            />
-            {touched && valueError && (<div>{valueError}</div>)}
-            
-            <button type="submit" className={styles.button}>
-                Комментировать
-            </button>
-        </form>
+        <div>
+            <Formik
+                initialValues={{ comment: "" }}
+                onSubmit={(values) => {
+                    console.log(values.comment);
+                }}
+            >
+                {({ values }) => (
+                    <form className={styles.form} onSubmit={handleSubmitPrevDef}>
+                        <textarea
+                            name="comment"
+                            className={styles.input}
+                            value={values.comment}
+                        ></textarea>
+                        <button type="submit" className={styles.button}>
+                            Комментировать
+                        </button>
+                    </form>
+                )}
+            </Formik>
+        </div>
     );
-
-    //когда работаем с контейнером
-    // export function CommentForm({ value, onChange, onSubmit }: Props) {
-    // return (
-    //     <form className={styles.form} onSubmit={onSubmit}>
-    //         <textarea className={styles.input} value={value} onChange={onChange}/>
-    //         <button type="submit" className={styles.button}>Комментировать</button>
-    //     </form>
-    // );
-    // }
 }
+
+// export function CommentForm() {
+
+//     const [value, setValue] = useState('');
+//     const [touched, setTouched] = useState(false);
+//     const [valueError, setValueError] = useState('');
+
+//     function handleSubmit(event: FormEvent) {
+//         event.preventDefault();
+//         setTouched(true);
+//         setValueError(validateValue());
+
+//         const isFormValid = !validateValue();
+//         if(!isFormValid) return;
+
+//         alert('Форма отправлена');
+//     }
+
+//     function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+//         setValue(event.target.value);
+//     }
+
+//     function validateValue() {
+//         if(value.length <= 3) return 'Введите больше 3-х символов';
+//         return '';
+//     }
+//     return (
+//         <form className={styles.form} onSubmit={handleSubmit}>
+//             <textarea
+//                 className={styles.input}
+//                 value={value}
+//                 onChange={handleChange}
+//                 aria-invalid={valueError ? 'true' : undefined}
+//             />
+//             {touched && valueError && (<div>{valueError}</div>)}
+
+//             <button type="submit" className={styles.button}>
+//                 Комментировать
+//             </button>
+//         </form>
+//     );
+
+//когда работаем с контейнером
+// export function CommentForm({ value, onChange, onSubmit }: Props) {
+// return (
+//     <form className={styles.form} onSubmit={onSubmit}>
+//         <textarea className={styles.input} value={value} onChange={onChange}/>
+//         <button type="submit" className={styles.button}>Комментировать</button>
+//     </form>
+// );
+// }
+// }
 
 // до создания контейнера тут было это:
 // const ref = useRef<HTMLTextAreaElement>(null); // это было для неуправляемой компоненты
