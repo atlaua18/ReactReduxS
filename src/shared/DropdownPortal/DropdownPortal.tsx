@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import styles from "../Dropdown/dropdown.css";
 
 interface IDropdownPortalProps {
-    button: React.ReactNode;
+    // button: React.ReactNode;
     children: React.ReactNode;
     onClose?: () => void;
 }
@@ -33,7 +33,6 @@ export function DropdownPortal(props: IDropdownPortalProps) {
 
     return ReactDOM.createPortal(
         <div className={styles.container} ref={ref}>
-            {props.button}
             <div className={styles.listContainer}>
                 <div className={styles.list}>{props.children}</div>
             </div>

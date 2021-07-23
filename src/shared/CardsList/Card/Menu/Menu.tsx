@@ -8,28 +8,33 @@ import styles from "./menu.css";
 import { MenuItemsList } from "./MenuItemList/MenuItemsList";
 
 export function Menu() {
+    
+
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className={styles.menu}>
             <div className={styles.menu}>
                 <button
+                    id="btn_menu"
                     className={styles.menuButton}
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     <MenuIcon />
                 </button>
                 {isOpen && (
-                    <DropdownPortal onClose={() => setIsOpen(false)} 
-                    button={
-                        <button className={styles.menuButton}>
-                            <MenuIcon />
-                        </button>
-                    }>
+                    <DropdownPortal
+                        onClose={() => setIsOpen(false)}
+                        // button={
+                        //     <button className={styles.menuButton}>
+                        //         <MenuIcon />
+                        //     </button>
+                        // }
+                    >
                         <div className={styles.dropdown}>
-                        <button className={styles.menuButton}>
-                            <MenuIcon />
-                        </button>
+                            <button className={styles.menuButton}>
+                                <MenuIcon />
+                            </button>
                             <MenuItemsList postId="1234" />
                             <button className={styles.closeBtn}>
                                 <Text
@@ -49,7 +54,7 @@ export function Menu() {
 }
 
 // для DropDownPortal
-{
+// {
     /* <div id="dropdown_menu" className={styles.menu}>
 <button className={styles.menuButton} onClick = { () => setIsOpen(!isOpen)}>
     <MenuIcon />
@@ -66,10 +71,10 @@ export function Menu() {
     </div>
 </DropdownPortal>)}
 </div> */
-}
+// }
 
 // для обычного Dropdown
-{
+// {
     /* <div className={styles.menu}>
             <Dropdown
                 button={
@@ -88,4 +93,4 @@ export function Menu() {
                 </div>
             </Dropdown>
         </div> */
-}
+// }
