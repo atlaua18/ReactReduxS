@@ -6,11 +6,13 @@ interface IDropdownPortalProps {
     // button: React.ReactNode;
     children: React.ReactNode;
     onClose?: () => void;
+    left?: number;
+    top?: number;
 }
 
 export function DropdownPortal(props: IDropdownPortalProps) {
     const ref = useRef<HTMLDivElement>(null);
-
+    // debugger
     useEffect(() => {
         function handleClick(event: MouseEvent) {
             if (
@@ -40,3 +42,5 @@ export function DropdownPortal(props: IDropdownPortalProps) {
         node
     );
 }
+
+// style={{left: props.left, top: props.top}} 

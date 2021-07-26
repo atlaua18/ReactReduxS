@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 // import { Dropdown } from "../../../Dropdown/Dropdown";
 import { DropdownPortal } from "../../../DropdownPortal/DropdownPortal";
@@ -8,33 +8,47 @@ import styles from "./menu.css";
 import { MenuItemsList } from "./MenuItemList/MenuItemsList";
 
 export function Menu() {
-    
+    const ref = useRef<HTMLButtonElement>(null);
+    // let btn = document.getElementById("btn_menu");
+    // let coords = btn?.getBoundingClientRect();
+    let coords = ref.current?.getBoundingClientRect();
+
+    // coords?.left + "px";
+    // coords?.top + "px";
+
+    // btn?.addEventListener("click", () => {
+    //     let x = Math.round(btn?.getBoundingClientRect().x);
+    //     let y = btn?.getBoundingClientRect().y;
+    //     console.log(x);
+    //     console.log(y);
+    // });
+
+    const handleClick = () => {
+        // debugger
+        setIsOpen(!isOpen);
+        console.log(coords?.left + " px " + coords?.top + " px");
+    };
 
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={styles.menu}>
             <div className={styles.menu}>
                 <button
-                    id="btn_menu"
+                    ref={ref}
                     className={styles.menuButton}
-                    onClick={() => setIsOpen(!isOpen)}
+                    // onClick={() => setIsOpen(!isOpen)}
+                    onClick={handleClick}
                 >
                     <MenuIcon />
                 </button>
+                {}
                 {isOpen && (
                     <DropdownPortal
                         onClose={() => setIsOpen(false)}
-                        // button={
-                        //     <button className={styles.menuButton}>
-                        //         <MenuIcon />
-                        //     </button>
-                        // }
+                        left={coords?.left}
+                        top={coords?.top}
                     >
                         <div className={styles.dropdown}>
-                            <button className={styles.menuButton}>
-                                <MenuIcon />
-                            </button>
                             <MenuItemsList postId="1234" />
                             <button className={styles.closeBtn}>
                                 <Text
@@ -49,13 +63,12 @@ export function Menu() {
                     </DropdownPortal>
                 )}
             </div>
-        </div>
     );
 }
 
 // для DropDownPortal
 // {
-    /* <div id="dropdown_menu" className={styles.menu}>
+/* <div id="dropdown_menu" className={styles.menu}>
 <button className={styles.menuButton} onClick = { () => setIsOpen(!isOpen)}>
     <MenuIcon />
 </button>
@@ -75,7 +88,7 @@ export function Menu() {
 
 // для обычного Dropdown
 // {
-    /* <div className={styles.menu}>
+/* <div className={styles.menu}>
             <Dropdown
                 button={
                     <button className={styles.menuButton}>

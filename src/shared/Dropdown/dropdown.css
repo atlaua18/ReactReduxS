@@ -13,7 +13,7 @@
 }
 
 .list {
-    position: absolute;
+    position: fixed;
     /* left: -20px;
     top: -60px; */
     left: 0;
