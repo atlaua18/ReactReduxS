@@ -5,34 +5,36 @@ import { Layout } from "./shared/Layout/Layout";
 import { Header } from "./shared/Header/Header";
 import { Content } from "./shared/Content/Content";
 import { CardsList } from "./shared/CardsList/CardsList";
-// import { UserContextProvider } from "./shared/context/userContext";
-// import { PostsContextProvider } from "./shared/context/postsContext";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { rootReducer } from "./store/reducer";
 import { applyMiddleware } from "redux";
-import thunk from 'redux-thunk';
+import thunk from "redux-thunk";
 
-const store = createStore(rootReducer, composeWithDevTools(
-    applyMiddleware(thunk)
-));
+import { BrowserRouter } from "react-router-dom";
+
+const store = createStore(
+    rootReducer,
+    composeWithDevTools(applyMiddleware(thunk))
+);
 
 function AppComponent() {
-    
     return (
         <Provider store={store}>
+            <BrowserRouter>
                 {/* <UserContextProvider> */}
-                    <Layout>
-                        <Header />
-                        <Content>
-                            {/* <PostsContextProvider> */}
-                                <CardsList />
-                            {/* </PostsContextProvider> */}
-                        </Content>
-                    </Layout>
+                <Layout>
+                    <Header />
+                    <Content>
+                        {/* <PostsContextProvider> */}
+                        <CardsList />
+                        {/* </PostsContextProvider> */}
+                    </Content>
+                </Layout>
                 {/* </UserContextProvider> */}
+            </BrowserRouter>
         </Provider>
     );
 }
@@ -53,9 +55,9 @@ export const App = hot(() => <AppComponent />);
 //#region было до redux/rootReducer
 // const [commentValue, setCommentValue] = useState("");
 
-    // const [token] = useToken();
+// const [token] = useToken();
 
-    // const CommentProvider = commentContext.Provider;
+// const CommentProvider = commentContext.Provider;
 
 // return (
 //     <Provider store={store}>
@@ -101,15 +103,15 @@ export const App = hot(() => <AppComponent />);
 //     setList(list.concat(generateId({ value: generateRandomString() })));
 // };
 
-{
+// {
     /* <button onClick={handleAdd}>Add element</button> */
-}
-{
+// }
+// {
     /* <MyList
                     list={LIST} onClick={console.log}
                 /> */
-}
-{
+// }
+// {
     /* <MyList
                     list={list.map(
                         merge({
@@ -117,19 +119,7 @@ export const App = hot(() => <AppComponent />);
                         })
                     )}
                 /> */
-}
-
-function useSelector<T, U>(arg0: (state: any) => any) {
-    throw new Error("Function not implemented.");
-}
-
-function useDispatch() {
-    throw new Error("Function not implemented.");
-}
-
-function setToken(__token__: string): any {
-    throw new Error("Function not implemented.");
-}
+// }
 // <GenericList list={list.map(
 //         merge({
 //             onClick: handleItemClick
